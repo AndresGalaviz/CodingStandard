@@ -1,6 +1,8 @@
 import re
+import sys
+import subprocess
 from tools import *
-# TheLongAndWindingRoad.cpp
+# TheLongAndWindingRoad2.cpp
 fileName = input("Please enter filename: ")
 
 print(fileName)
@@ -10,7 +12,19 @@ else:
     print('Filename is incorrect')
 
 
+
+
 with open(fileName) as file:
+    bashCommand = "g++ " + fileName
+
+    process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    output = process.communicate()[1]
+    
+    if ("error" in str(output)):
+        print("Code does not compile")
+        print(output)
+        sys.exit()
+        
     lineNumber = 0;
     for line in file:
         tokens = line.split()
