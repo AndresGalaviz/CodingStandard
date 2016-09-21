@@ -1,0 +1,43 @@
+import re
+from tools import *
+# TheLongAndWindingRoad.cpp
+fileName = input("Please enter filename: ")
+
+print(fileName)
+if bool(re.search(r'^([A-Z][a-z]*[0-9]*)+\.cpp$', fileName)):
+    print('Filename is okay')
+else:
+    print('Filename is incorrect')
+
+
+with open(fileName) as file:
+    lineNumber = 0;
+    for line in file:
+        tokens = line.split()
+        lineNumber += 1
+        if(len(tokens) == 0):
+            continue
+        print("Line number " + str(lineNumber), end = ": \n")
+        
+        i = 0
+        print(tokens)
+        if(tokens[i] in reservedWords):
+            if(tokens[i] == 'const'):
+                i += 1
+            
+            if(tokens[i] in variableDefinitions):
+                variableRegex = re.escape(tokens[i][0]) + r"([A-Z][a-z]*[0-9]*)+$"
+                lineIsCorrect = False
+                if(bool(re.search(variableRegex, tokens[i + 1]))):
+                    lineIsCorrect = True
+                    wordsPerLine = re.findall(r'[A-Z][a-z]*', tokens[i + 1])
+                    for word in wordsPerLine:
+                        if(word.lower() in reservedWords):
+                            print("\tReserved word detected in variable name: " + word)
+                            lineIsCorrect = False
+                
+                if(lineIsCorrect):
+                    print('\t' + tokens[i] + " variable: \'" + tokens[1] + "\' is correct")
+                else:
+                    print('\t' + tokens[i] + "  variable: \'" + tokens[1] + "\' is incorrect")
+        
