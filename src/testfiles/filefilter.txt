@@ -1,0 +1,7 @@
+{{{
+	~ RULE_1_A__FileName_PascalCase
+	~ RULE_1_B__PascalCase_Variable_Naming
+	~ RULE_2_A__Use_Space_Indentation
+	~ RULE_3_A__Indent_Blocks
+
+}}}
