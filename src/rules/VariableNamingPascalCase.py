@@ -28,9 +28,13 @@ def RunRule(lexer, contextStack) :
     if t.type == "INT" or t.type == "BOOL" or t.type == "FLOAT" or t.type == "STRINGTYPE" or t.type == "CHAR":
         t2 = lexer.GetNextTokenSkipWhiteSpace();
         t3 = lexer.GetNextTokenSkipWhiteSpace();
+        
         prefixType = t.type[0].lower()
         if(t3.type == "LBRACKET"):
             prefixType = prefixType + "Arr"
+        elif(t3.type == "LPAREN"):
+            return    
+
         variableRegex = re.escape(prefixType) + r"([A-Z][a-z]*[0-9]*)+$"
         if(t2.value != "main" and not bool(re.search(variableRegex, t2.value))):
             nsiqcppstyle_reporter.Error(t, __name__, 

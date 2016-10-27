@@ -16,7 +16,7 @@ from nsiqcppstyle_rulemanager import * #@UnusedWildImport
 import re
 
 def RunRule(lexer, filename, dirname) :
-    if not bool(re.search(r'(?!.)*([A-Z][a-z]*[0-9]*)+\.cpp$', filename)):
+    if not bool(re.search(r'^.{44}([A-Z][a-z]*[0-9]*)+\.cpp$', filename)):
         nsiqcppstyle_reporter.Error(nsiqcppstyle_reporter.DummyToken(lexer.filename, "", 0, 0), __name__, "Filename %s should use PascalCase formating." % filename)
     
 ruleManager.AddFileStartRule(RunRule)

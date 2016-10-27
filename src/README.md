@@ -4,17 +4,9 @@ nsiqcppstyle is one of the most customizable cpp style checkers about.
 
 ## Features
 
-* Checks more than 47 rules. You can find the available rules in http://nsiqcppstyle.appspot.com or run the command (given below)
-* No complex preprocess setting(Easy to run. Just run the nsiqcppstyle in the folder to be analyzed.)
 * Rule / Analysis engine separated structure.
 * Easy to add custom rules.
 * Analysis engine parses source code in heuristic way not concrete grammar. So it supports most C/C++ variations.
-* Supports IDE integation.
-* Easy to integrate in Visual Studio / Emacs / Eclipse CDT. Support each IDE standard error output format.
-* Support CI server.
-* Support checkstyle xml output. You can use checkstyle plugin in various CI server to show N'SIQ CppStyle result.
-* Various violation suppression
-* Provides 4 way to suppress the false alarm. filefilter / basefile / rule ignore per file / violation ignore
 
 # Instructions
 
@@ -234,10 +226,8 @@ Single files are also allowed in this format
 
 # Credits
 
-All ther development upto Aug 18 was done by [JunHo Yoon](https://code.google.com/u/103331831595695901509/). For more information, contact him on twitter : [@Junotest](https://twitter.com/junotest)
+Original library and all the development upto Aug 18 was done by [JunHo Yoon](https://code.google.com/u/103331831595695901509/). For more information, contact him on twitter : [@Junotest](https://twitter.com/junotest)
 
 Original code can be found [here](https://code.google.com/p/nsiqcppstyle/)
 
-Also, instructions for deploying a rule server can be found [here](https://code.google.com/p/nsiqcppstyle/wiki/HowToInstallNsiqCppStyleServer).
-
-I haven't tested this functionality as of now **2014-08-19 Tue 11:05 PM**
+Rule design by Iceberg Team
