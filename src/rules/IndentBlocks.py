@@ -47,14 +47,19 @@ from nsiqcppstyle_reporter import *
 from nsiqcppstyle_rulemanager import *
 from nsiqcppstyle_rulehelper import *
 
+# Rule Definition
 def RunRule(lexer, contextStack) :
+    # We first obtain the first token
     t = lexer.GetCurToken()
-    # print t
+    # If the token is "{"
     if t.type == "LBRACE" and t.pp == None :
+        # We obtain the indentation
         column = GetIndentation(t)
+        # We get the matching "}"
         t2 = lexer.GetNextMatchingToken(True)
+        # If we find it and the line number is not the same for both
         if t2 != None and t.lineno != t2.lineno : 
-            # print t,t2
+            # We get the next token and verify indentation
             nt = lexer.GetNextTokenSkipWhiteSpaceAndCommentAndPreprocess()
             if nt != None and nt != t2 and nt.type not in ("LBRACE", "RBRACE") and GetIndentation(nt) <= column :
                 nsiqcppstyle_reporter.Error(nt, __name__, 

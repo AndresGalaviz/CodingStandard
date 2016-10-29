@@ -1,5 +1,6 @@
 {{{
 	~ FileNamePascalCase
+	~ FunctionNaming
 	~ IndentBlocks
 	~ UseSpaceIndentation
 	~ VariableNamingPascalCase

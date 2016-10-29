@@ -23,8 +23,12 @@ In addition, it suppresses the violation when the line contains only spaces and 
 from nsiqcppstyle_rulehelper import  *
 from nsiqcppstyle_reporter import *
 from nsiqcppstyle_rulemanager import *
+
+# Rule Definition
 def RunRule(lexer, line, lineno) :
+    # If this is not an empty line
     if not Match("^\s*$", line) :
+        # If we find a tab then we raise an error
         if Search("^\t", line) :
             nsiqcppstyle_reporter.Error(DummyToken(lexer.filename, line, lineno, 0), __name__, "Do not use tab for indent")
 

@@ -23,20 +23,28 @@ from nsiqcppstyle_rulehelper import  *
 from nsiqcppstyle_reporter import *
 from nsiqcppstyle_rulemanager import *
 import re
+
+# Rule Definition
 def RunRule(lexer, contextStack) :
+    # We first obtain the first token and the type
     t = lexer.GetCurToken()
     if t.type == "INT" or t.type == "BOOL" or t.type == "FLOAT" or t.type == "STRINGTYPE" or t.type == "CHAR":
+        # We also obtain the next two tokens, first one to get the name and the second one
+        # to verify if this is an array definition
         t2 = lexer.GetNextTokenSkipWhiteSpace();
+        if(t2.type == "FUNCTION"):
+            return
         t3 = lexer.GetNextTokenSkipWhiteSpace();
         
+        # We obtain the prefix name from the type and add Arr if this is an array
         prefixType = t.type[0].lower()
         if(t3.type == "LBRACKET"):
             prefixType = prefixType + "Arr"
-        elif(t3.type == "LPAREN"):
-            return    
-
+        
+        # Finally we create a regex that matches the desired variable definition
         variableRegex = re.escape(prefixType) + r"([A-Z][a-z]*[0-9]*)+$"
-        if(t2.value != "main" and not bool(re.search(variableRegex, t2.value))):
+        # If this is not the main function and the 
+        if(not bool(re.search(variableRegex, t2.value))):
             nsiqcppstyle_reporter.Error(t, __name__, 
                       t.type + " variable declaration (Prefix Type: " + prefixType + 
                       " + PascalCase): \'" + t2.value + "\' is incorrect")
