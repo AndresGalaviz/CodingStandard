@@ -101,7 +101,6 @@ tokens = [
     'STATIC', 'STRUCT', 'TEMPLATE', 'THIS', 'TYPEDEF',
     'TYPENAME', 'UNION', 'USING', 'VIRTUAL',
     'CLASS', "AUTO",
-
     
     "CHAR",
     "STRINGTYPE",
