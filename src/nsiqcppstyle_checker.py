@@ -104,6 +104,7 @@ tokens = [
 
     
     "CHAR",
+    "STRINGTYPE",
     "INT",
     "LONG",
     "DOUBLE",
@@ -229,6 +230,7 @@ reserved = {
     "virtual":"VIRTUAL",
     "bool":"BOOL",
     "char":"CHAR",
+    "string": "STRINGTYPE",
     "int":"INT",
     "long":"LONG",
     "double":"DOUBLE",
