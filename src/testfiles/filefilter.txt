@@ -3,6 +3,5 @@
 	~ FunctionNaming
 	~ IndentBlocks
 	~ UseSpaceIndentation
-	~ VariableNamingPascalCase
-	~ ConstantsNamingUpperCase
+	~ VariableNaming
 }}}
