@@ -34,3 +34,28 @@ def list(request):
         'list.html',
         {'documents': documents, 'form': form}
     )
+
+def input(request):
+    # Handle file upload
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = Document(docfile=request.FILES['docfile'])
+            newdoc.save()
+
+            # Redirect to the document list after POST
+            return HttpResponseRedirect(reverse('list'))
+    else:
+        form = DocumentForm()  # A empty, unbound form
+
+    return render(
+            request, 
+            'input.html',
+            {'form': form}
+        )
+
+def loading(request):
+    return render(request, 'loading.html')
+
+def final(request):
+    return render(request, 'final.html')
