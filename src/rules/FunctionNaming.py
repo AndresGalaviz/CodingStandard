@@ -1,22 +1,13 @@
 """
-Do not use question(?) keyword.
-if it's shown... this rule reports a violation.
-
 == Violation ==
 
-    void a() {
-        c = t ? 1 : 2;  <== Violation. ? keyword is used. 
-    }
+    - tax_Calculation(int iSalary)
+    - int TemperatureAverages(int[] dArrTemperatures)
+    - void DisplayForce(dForce)
 
 == Good ==
-
-    void a() {
-        if (t) { <== OK.
-           c = 1;
-        } else {
-           c = 2;
-        }
-    }
+    - int taxCalculation(int iSalary)
+    - void displayTotal(double dTotal)
 
 """
 from nsiqcppstyle_rulehelper import  *
@@ -31,8 +22,10 @@ def RunRule(lexer, contextStack) :
     if t.type == "INT" or t.type == "BOOL" or t.type == "FLOAT" or t.type == "STRINGTYPE" or t.type == "CHAR":
         # We also obtain the next token to see if this is a function
         t2 = lexer.GetNextTokenSkipWhiteSpace();
-        if(t2.type == "FUNCTION"):
-            if(not bool(re.search(r"^[a-z]+([A-Z][a-z]*[0-9]*)+$"), t2.value)):
+        
+        if(t2.type == "FUNCTION" and t2.value != "main"):
+            
+            if(not bool(re.search(r"^[a-z]+([A-Z][a-z]*[0-9]*)+$", t2.value))):
                 nsiqcppstyle_reporter.Error(t, __name__, 
                       t.type + " function declaration " + t2.value + " is incorrect")
        

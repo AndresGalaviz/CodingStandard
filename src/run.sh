@@ -1,0 +1,1 @@
+python2 nsiqcppstyle.py testfiles/
