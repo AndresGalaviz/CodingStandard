@@ -4,11 +4,11 @@
     <meta charset="utf-8">
 
     <title>C++ code Standard Evaluator</title>
-    {% load static%}
+    {% load static %}
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
 
     <!-- jQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -21,7 +21,7 @@
         <div class="nav-wrapper blue darken-4">
           <a href="#!" class="brand-logo center">C++ Code Standard Evaluator</a>
           <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><img id="tec-logo" src="img/logo-tec.png"></li>
+            <li><img id="tec-logo" src="{% static "img/logo-tec.png" %}"></li>
           </ul>
         </div>
     </nav>
