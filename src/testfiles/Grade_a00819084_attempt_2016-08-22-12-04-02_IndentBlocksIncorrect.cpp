@@ -1,4 +1,8 @@
-int FunctionOne() 
+/* FunctionOne
+
+    does nothing
+*/
+int FunctionOne()
 {
 return 1;
 }

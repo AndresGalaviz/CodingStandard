@@ -1,7 +1,9 @@
 {{{
+	~ CommentsForFunctions
 	~ FileNamePascalCase
 	~ FunctionNaming
 	~ IndentBlocks
 	~ UseSpaceIndentation
 	~ VariableNaming
+	~ VariableNamingPascalCase
 }}}

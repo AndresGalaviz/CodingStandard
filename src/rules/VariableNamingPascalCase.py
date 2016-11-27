@@ -5,7 +5,7 @@ if it's shown... this rule reports a violation.
 == Violation ==
 
     void a() {
-        c = t ? 1 : 2;  <== Violation. ? keyword is used. 
+        c = t ? 1 : 2;  <== Violation. ? keyword is used.
     }
 
 == Good ==
@@ -56,8 +56,8 @@ ruleManager.AddRule(RunRule)
 from nsiqunittest.nsiqcppstyle_unittestbase import *
 class testRule(nct):
     def setUpRule(self):
-        ruleManager.AddRule(RunRule)   
-        
+        ruleManager.AddRule(RunRule)
+
     def test1(self):
         self.Analyze("thisfile.c","""
 void Hello() {
