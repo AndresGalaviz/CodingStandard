@@ -8,30 +8,30 @@
             <div class="col s8 offset-s2">
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons prefix">attachment</i>
-                        <input id="filename" type="number" class="validate">
-                        <label class="active" for="filename">Nombre de archivo</label>
+                        <i class="material-icons prefix">attachment </i>
+                        {{ form.filename }}
+                        <label class="active" for="filename">{{ form.filename.label }}</label>
                     </div>  
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">label</i>
-                        <input id="variables" type="number" class="validate">
-                        <label class="active" for="variables">Nombres de variable</label>
+                        {{ form.variables }}
+                        <label class="active" for="variables">{{ form.variables.label }}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">reorder</i>
-                        <input id="indentation" type="number" class="validate">
-                        <label class="active" for="identation">Indentación</label>
+                        {{ form.indentation }}
+                        <label class="active" for="identation">{{ form.indentation.label }}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">description</i>
-                        <input id="documentation" type="number" class="validate">
-                        <label class="active" for="documentation">Documentación</label>
+                        {{ form.documentation }}
+                        <label class="active" for="documentation">{{ form.documentation.label }}</label>
                     </div>
                 </div>
                 <div class="row">
@@ -39,22 +39,12 @@
                         <div class="btn">
                             <i class="material-icons left">folder</i>
                             <span>File</span>
-                            <input type="file" accept=".cpp" multiple>
+                            {{ form.docfile }}
                         </div>
                         <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                            <input class="file-path validate" type="text" placeholder="{{ form.docfile.label }}">
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <p>{{ form.non_field_errors }}</p>
-
-                    <p>{{ form.docfile.label_tag }}</p>
-
-                    <p>
-                        {{ form.docfile.errors }}
-                        {{ form.docfile }}
-                    </p>
                 </div>
                 <div class="row">
                     <div class="right-align">
@@ -63,6 +53,8 @@
                 </div>
                 <div class="row">
                     <p id="error"></p>
+                    <p>{{ form.non_field_errors }}</p>
+                    <p>{{ form.docfile.errors }}</p>
                 </div>
             </div>
         </form>
