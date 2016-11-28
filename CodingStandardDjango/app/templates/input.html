@@ -3,14 +3,15 @@
 <!-- Forma para el grading criteria -->
 <div class="container">
     <div class="row">
-        <form>
+        <form action="{% url "input" %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
             <div class="col s8 offset-s2">
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">attachment</i>
                         <input id="filename" type="number" class="validate">
                         <label class="active" for="filename">Nombre de archivo</label>
-                    </div>
+                    </div>  
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
@@ -46,11 +47,23 @@
                     </div>
                 </div>
                 <div class="row">
+                    <p>{{ form.non_field_errors }}</p>
+
+                    <p>{{ form.docfile.label_tag }}</p>
+
+                    <p>
+                        {{ form.docfile.errors }}
+                        {{ form.docfile }}
+                    </p>
+                </div>
+                <div class="row">
                     <div class="right-align">
-                        <a class="waves-effect waves-light btn">Analizar</a>
+                        <a id="analyze" class="waves-effect waves-light btn" type="submit">Analizar</a>
                     </div>
                 </div>
-                <p id="error"></p>
+                <div class="row">
+                    <p id="error"></p>
+                </div>
             </div>
         </form>
     </div>
@@ -61,21 +74,21 @@
     }).keyup();
     
     function displayVals() {
-      var filename = parseInt($( "#filename" ).val());
-      var variables = parseInt($( "#variables" ).val());
-      var indentation = parseInt($( "#indentation" ).val());
-      var documentation = parseInt($( "#documentation" ).val());
+      var filename = parseInt($('#filename').val());
+      var variables = parseInt($('#variables').val());
+      var indentation = parseInt($('#indentation').val());
+      var documentation = parseInt($('#documentation').val());
 
-      var check = !$.isNumeric(filename) || !$.isNumeric(variables) || !$.isNumeric(indentation) || !$.isNumeric(documentation)
-      var total = filename + variables + indentation + documentation
+      var check = !$.isNumeric(filename) || !$.isNumeric(variables) || !$.isNumeric(indentation) || !$.isNumeric(documentation);
+      var total = filename + variables + indentation + documentation;
       if(check) {
-        $( "#error " ).html("Todos los campos deben tener valores");
+        $('#error').html('Todos los campos deben tener valores');
       }
       else if(total != 100) {
-        $( "#error " ).html("Los campos deben sumar 100");
+        $('#error').html('Los campos deben sumar 100');
       }
       else {
-        $( "#error " ).html("Excelente");
+        $('#error').html('El criterio es válido');
       }
     }
     displayVals();

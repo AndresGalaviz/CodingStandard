@@ -44,7 +44,7 @@ def input(request):
             newdoc.save()
 
             # Redirect to the document list after POST
-            return HttpResponseRedirect(reverse('list'))
+            return HttpResponseRedirect(reverse('input'))
     else:
         form = DocumentForm()  # A empty, unbound form
 
