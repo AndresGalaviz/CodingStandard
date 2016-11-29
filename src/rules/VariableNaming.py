@@ -34,9 +34,11 @@ def RunRule(lexer, contextStack) :
 
         if t0.type == "CONST":
             variableRegex = r"([A-Z]*)+$"
+            errorType = "CONSTANT declaration"
             errorMessage = "UPPERCASE"
         else:
             variableRegex = r"([A-Z][a-z]+[0-9]*)+$"
+            errorType = "variable declaration"
             errorMessage = "PascalCase"
 
         # We also obtain the next two tokens, first one to get the name and the second one
@@ -57,7 +59,7 @@ def RunRule(lexer, contextStack) :
         # If this is not the main function and the 
         if(not bool(re.search(variableRegex, t2.value))):
             nsiqcppstyle_reporter.Error(t, __name__, 
-                      t.type + " variable declaration (Prefix Type: " + prefixType + 
+                      t.type + " " + errorType + " (Prefix Type: " + prefixType + 
                       " + " + errorMessage + "): \'" + t2.value + "\' is incorrect")
 
 ruleManager.AddRule(RunRule)
