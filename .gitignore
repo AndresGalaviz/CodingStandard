@@ -7,3 +7,12 @@ HTML/.DS_Store
 .DS_Store
 .vscode/
 files/.DS_Store
+src/.idea/inspectionProfiles/profiles_settings.xml
+
+src/.idea/misc.xml
+
+src/.idea/src.iml
+
+src/.idea/modules.xml
+
+src/.idea/workspace.xml

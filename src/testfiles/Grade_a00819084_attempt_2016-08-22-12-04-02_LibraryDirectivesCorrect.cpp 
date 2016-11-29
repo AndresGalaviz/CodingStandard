@@ -11,6 +11,11 @@
 #include <stdio.h>
 #include <math.h>
 
+/*
+    main
+
+    does nothing
+*/
 int main()
 {
     return 0;
