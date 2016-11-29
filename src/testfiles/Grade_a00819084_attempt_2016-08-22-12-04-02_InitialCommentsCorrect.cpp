@@ -20,9 +20,24 @@ const int iFORCE = 10;
 int iForceAzul = 10;
 double dForceAzul09 = 10.5;
 float fForceAzul09 = 10.5;
+
+/*
+    taxCalculation
+
+    It calculates the tax
+
+    Parameters:
+    iSalary the salary
+*/
 int taxCalculation(int iSalary) {
     return 1;
 }
+
+/*
+    main
+
+    does nothing
+*/
 int main()
 {
     return 0;

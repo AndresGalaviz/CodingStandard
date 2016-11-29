@@ -14,6 +14,11 @@ int functionOne()
 return 1;
 }
 
+/*
+    main
+
+    does nothing
+*/
 int main()
 {
 return 0;
