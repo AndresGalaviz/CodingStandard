@@ -12,6 +12,11 @@ include <stdio.h>
 #include (stdio.h)
 #include <stdo.h>
 
+/*
+    main
+
+    does nothing
+*/
 int main()
 {
     return 0;
