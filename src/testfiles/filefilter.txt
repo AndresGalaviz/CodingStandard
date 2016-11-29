@@ -5,5 +5,5 @@
 	~ IndentBlocks
 	~ UseSpaceIndentation
 	~ VariableNaming
-	~ VariableNamingPascalCase
+	~ InitialComments
 }}}

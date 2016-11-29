@@ -1,0 +1,9 @@
+*.pyc
+.DS_Store
+.vscode/
+CodingStandardDjango/.DS_Store
+CodingStandardDjango/venv/
+HTML/.DS_Store
+.DS_Store
+.vscode/
+files/.DS_Store
