@@ -40,8 +40,9 @@ def input(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
-            newdoc = Document(docfile=request.FILES['docfile'])
-            newdoc.save()
+            for f in request.FILES.getlist('docfile'):
+                newdoc = Document(docfile = f)
+                newdoc.save()
 
             # Redirect to the document list after POST
             return HttpResponseRedirect(reverse('input'))
