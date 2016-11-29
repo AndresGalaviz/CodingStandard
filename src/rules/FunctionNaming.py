@@ -27,7 +27,7 @@ def RunRule(lexer, contextStack) :
             
             if(not bool(re.search(r"^[a-z]+([A-Z][a-z]*[0-9]*)+$", t2.value))):
                 nsiqcppstyle_reporter.Error(t, __name__, 
-                      t.type + " function declaration " + t2.value + " is incorrect")
+                      t.type + " function declaration " + t2.value + " is incorrect\n")
        
 ruleManager.AddRule(RunRule)
 ###########################################################################################
@@ -49,7 +49,7 @@ void Hello() {
     def test2(self):
         self.Analyze("thisfile.c","""
 int iArrPotato[1] = {1};
-void Hello() {
+void hello() {
 }
 """)
         assert not CheckErrorContent(__name__)
