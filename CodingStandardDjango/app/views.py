@@ -45,7 +45,6 @@ def input(request):
                 #f.read() contents of the file
                 newdoc = Document(docfile = f)
                 newdoc.save()
-
             # Redirect to the document list after POST
             return HttpResponseRedirect(reverse('input'))
     else:
