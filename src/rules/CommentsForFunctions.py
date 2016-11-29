@@ -28,3 +28,67 @@ def RunRule(lexer, fullName, decl, contextStack, typeContext):
 
 
 ruleManager.AddFunctionNameRule(RunRule)
+
+from nsiqunittest.nsiqcppstyle_unittestbase import *
+
+class testRule(nct):
+    def setUpRule(self):
+        ruleManager.AddFunctionNameRule(RunRule)
+
+# Error because the Hello can't be there there. Weong
+    def test1(self):
+        self.Analyze("thisfile.c", """
+/* Hello
+
+   say hello
+*/
+void Hello() {
+}
+""")
+        assert CheckErrorContent(__name__)
+
+    def test2(self):
+        self.Analyze("thisfile.c", """
+/*
+    Hello
+
+    say hello
+*/
+void Hello() {
+}
+""")
+        assert not CheckErrorContent(__name__)
+
+# Wrong because the description of the function has to have 2 words at least
+    def test3(self):
+        self.Analyze("thisfile.c", """
+/*
+Hello
+
+hello
+*/
+void Hello() {
+}
+""")
+        assert CheckErrorContent(__name__)
+
+# Wrong because it needs to have space between the name of the function and the description
+    def test4(self):
+        self.Analyze("thisfile.c", """
+/*
+Hello
+says hello
+*/
+void Hello() {
+}
+""")
+        assert CheckErrorContent(__name__)
+
+# Wrong because there is no comment for the function
+    def test5(self):
+        self.Analyze("thisfile.c", """
+/*
+void Hello() {
+}
+""")
+        assert CheckErrorContent(__name__)
