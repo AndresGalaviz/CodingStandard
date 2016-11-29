@@ -46,6 +46,7 @@ def input(request):
                 newdoc = Document(docfile = f)
                 newdoc.save()
             # Redirect to the document list after POST
+            print(newdoc.folder_string)
             return HttpResponseRedirect(reverse('input'))
     else:
         form = DocumentForm()  # A empty, unbound form
