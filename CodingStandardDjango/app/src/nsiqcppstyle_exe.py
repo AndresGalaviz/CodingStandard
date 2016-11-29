@@ -52,7 +52,7 @@ def ShowMessageAndExit(msg, usageOutput=True):
     print >> sys.stderr, msg
     if usageOutput:
         Usage()
-    sys.exit(-1)
+    sys.exit()
 
 
 def Usage():
@@ -124,11 +124,12 @@ Usage: nsiqcppstyle [Options]
   to generate basefilelist.txt.
 
 """
-    sys.exit(0)
+    
 
 
 def main(argv=None):
     global filename
+    
     if argv is None:
         argv = sys.argv
     try:
@@ -138,8 +139,7 @@ def main(argv=None):
                 "ci", "var=", "noBase"])
         except getopt.error, msg:
             raise ShowMessageAndExit(msg)
-            return 0
-
+            return 0   
         outputPath = ""
         _nsiqcppstyle_state.output_format = "vs7"
         filterScope = "default"
@@ -154,8 +154,9 @@ def main(argv=None):
             "JSP/PHP": set(["jsp", "php", "JSP", "PHP"]),
             "C/C++": set(["cpp", "h", "c", "hxx", "cxx", "hpp"])
             }
-
+        
         updateNsiqCppStyle = False
+        
         for o, a in opts:
             if o in ("-h", "--help"):
                 print title
@@ -187,10 +188,12 @@ def main(argv=None):
                 ciMode = True
             elif o == "--noBase":
                 noBase = True
-
+        
+        
         print title
         runtimePath = GetRuntimePath()
         sys.path.append(runtimePath)
+
         if updateNsiqCppStyle:
             try:
                 print "======================================================================================"
@@ -199,6 +202,7 @@ def main(argv=None):
                 print e
 
         targetPaths = GetRealTargetPaths(args)
+        
         multipleTarget = True
         if len(targetPaths) == 1:
             multipleTarget = False
@@ -317,15 +321,18 @@ def GetOutputPath(outputBasePath, outputPath):
 
 def GetRealTargetPaths(args):
     "extract real target path list from args"
+    
     if len(args) == 0:
         ShowMessageAndExit("Error!: Target directory must be provided")
     targetPaths = []
+    os.chdir('.')
     for eachTarget in args:
         realPath = os.path.realpath(eachTarget)
         targetPaths.append(realPath)
 #       CheckPathPermission(realPath, "Target directory")
         if not os.path.exists(realPath):
             ShowMessageAndExit("Error!: Target directory %s is not exists" % eachTarget)
+    os.chdir('app/src')
     return targetPaths
 
 #################################################################################################3

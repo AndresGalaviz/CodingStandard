@@ -1,4 +1,4 @@
-import nsiqcppstyle_util
+from app.src import nsiqcppstyle_util
 import os
 import urllib
 try:

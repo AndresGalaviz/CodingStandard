@@ -7,7 +7,9 @@ from django.core.urlresolvers import reverse
 from app.models import Document
 from app.forms import DocumentForm
 
-
+from app.src import nsiqcppstyle
+import sys
+import os
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -46,7 +48,11 @@ def input(request):
                 newdoc = Document(docfile = f)
                 newdoc.save()
             # Redirect to the document list after POST
-            print(newdoc.folder_string)
+            cwd = os.getcwd()
+
+            nsiqcppstyle.main(['nsiqcppstyle.py', '-f', 'filefilter.txt', 'media/' + newdoc.folder_string])
+            
+            os.chdir(cwd)
             return HttpResponseRedirect(reverse('input'))
     else:
         form = DocumentForm()  # A empty, unbound form

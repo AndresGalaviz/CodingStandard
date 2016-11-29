@@ -30,8 +30,7 @@
 import sys
 import os
 import csv #@UnusedImport
-import urllib #@UnusedImport
-import urllib2 #@UnusedImport
+
 try:
     import hashlib #@UnusedImport
 except ImportError:
@@ -40,7 +39,7 @@ import unittest #@UnusedImport
 import platform #@UnusedImport
 import sre_compile #@UnusedImport
 import shutil #@UnusedImport
-
+import nsiqcppstyle_exe
 def WeAreFrozen():
     return hasattr(sys, "frozen")
 
@@ -59,9 +58,10 @@ def GetRuntimePath() :
         runtimePath = os.path.dirname(module.__file__)
     return runtimePath
 
+def main(argv=None):    
+    sys.path.append(GetRuntimePath())
+    nsiqcppstyle_exe.main(argv)
 
 if __name__ == "__main__":
     sys.path.append(GetRuntimePath())
-    module = __import__("nsiqcppstyle_exe")
-    sys.exit(module.main())
-
+    main()
