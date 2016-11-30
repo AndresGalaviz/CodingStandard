@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 
 from app.models import Document
 from app.forms import DocumentForm
@@ -50,10 +51,12 @@ def input(request):
             # Redirect to the document list after POST
             cwd = os.getcwd()
 
-            nsiqcppstyle.main(['nsiqcppstyle.py', '-f', 'filefilter.txt', 'media/' + newdoc.folder_string])
+            nsiqcppstyle.main(['nsiqcppstyle.py', '-f', 'filefilter.txt', '--output=csv', '-o', 'output/' + newdoc.folder_string, 'media/' + newdoc.folder_string])
             
             os.chdir(cwd)
-            return HttpResponseRedirect(reverse('input'))
+            print("****************************")
+            
+            return redirect('final')
     else:
         form = DocumentForm()  # A empty, unbound form
 

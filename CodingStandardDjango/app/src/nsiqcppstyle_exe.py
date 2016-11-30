@@ -290,7 +290,8 @@ def main(argv=None):
 
         nsiqcppstyle_reporter.ReportSummaryToScreen(analyzedFiles, _nsiqcppstyle_state, filter, ciMode)
         nsiqcppstyle_reporter.CloseReport(_nsiqcppstyle_state.output_format)
-        return 0
+        
+        
 
     except Usage, err:
         print >> sys.stderr, err.msg
@@ -311,11 +312,13 @@ def Update():
 csvResult = []
 def GetOutputPath(outputBasePath, outputPath):
     "Returns the LOC and complexity result path"
+    os.chdir('.')
     if outputPath == "":
         if os.path.isfile(outputBasePath):
             outputPath = os.path.dirname(outputBasePath)
         else:
             outputPath = outputBasePath
+    os.chdir('app/src')
     return os.path.realpath(outputPath)
 
 
