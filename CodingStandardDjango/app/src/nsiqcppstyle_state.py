@@ -29,10 +29,13 @@ class _NsiqCppStyleState(object):
     """Maintains module-wide state.."""
     def __init__(self):
         self.error_count = 0    # global count of reported errors
+        self.total_count = 0    # global count of reported and non-reported
         # filters to apply when emitting error messages
         self.checkers = []
         self.errorPerChecker = {}
+        self.totalPerChecker = {}
         self.errorPerFile = {}
+        self.totalPerFile = {}
         # output format:
         # "emacs" - format that emacs can parse (default)
         # "vs7" - format that Microsoft Visual Studio 7 can parse
@@ -59,16 +62,35 @@ class _NsiqCppStyleState(object):
     def ResetErrorCount(self):
         """Sets the module's error statistic back to zero."""
         self.error_count = 0
+        self.total_count = 0
         self.errorPerChecker = {}
+        self.totalPerChecker = {}
         self.errorPerFile = {}
+        self.totalPerFile = {}
 
     def IncrementErrorCount(self, category, file):
         """Bumps the module's error statistic."""
         self.error_count += 1
+        self.total_count += 1
+
         self.errorPerChecker[category] = self.errorPerChecker.get(category, 0) + 1
+        self.totalPerChecker[category] = self.totalPerChecker.get(category, 0) + 1
+
         errorsPerFile = self.errorPerFile.get(file, {})
+        totalsPerFile = self.totalsPerFile.get(file, {})
+
         errorsPerFile[category] = errorsPerFile.get(category, 0) + 1
+        totalsPerFile[category] = errorsPerFile.get(category, 0) + 1
+
         self.errorPerFile[file] = errorsPerFile
+        self.totalPerFile[file] = totalsPerFile
+
+    def IncrementTotalCount(self, category, file):
+        self.total_count += 1
+        self.totalPerChecker[category] = self.totalPerChecker.get(category, 0) + 1
+        totalsPerFile = self.totalsPerFile.get(file, {})
+        totalsPerFile[category] = errorsPerFile.get(category, 0) + 1
+        self.totalPerFile[file] = totalsPerFile
 
     def SuppressRule(self, ruleName):
         self.suppressRules[ruleName] = True
