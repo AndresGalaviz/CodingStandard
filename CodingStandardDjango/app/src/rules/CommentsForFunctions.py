@@ -18,12 +18,12 @@ def RunRule(lexer, fullName, decl, contextStack, typeContext):
             nsiqcppstyle_reporter.Error(t, __name__, "Function comment is missing documentation")
             return
 
-        frstLineOpenBlockComment = "/*" == t.line
-        scndLineFunctionName = len(commentLines[1].split()) == 1
-        thrdLineEmpty = commentLines[2] == ""
-        frthLineDescription = len(commentLines[3].split()) > 1 # minimum 2 words
+        firstLineOpenBlockComment = "/*" == t.line
+        secondLineFunctionName = len(commentLines[1].split()) == 1
+        thirdLineEmpty = commentLines[2] == ""
+        fourthLineDescription = len(commentLines[3].split()) > 1 # minimum 2 words
 
-        if not(frstLineOpenBlockComment and scndLineFunctionName and thrdLineEmpty and frthLineDescription):
+        if not(firstLineOpenBlockComment and secondLineFunctionName and thirdLineEmpty and fourthLineDescription):
             nsiqcppstyle_reporter.Error(t, __name__, "Function comment doesn't follow format style")
 
 
