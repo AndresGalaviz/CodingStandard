@@ -46,15 +46,13 @@ def input(request):
             for f in request.FILES.getlist('docfile'):
                 #f name of the file
                 #f.read() contents of the file
+                
                 newdoc = Document(docfile = f)
                 newdoc.save()
             # Redirect to the document list after POST
-            cwd = os.getcwd()
 
-            nsiqcppstyle.main(['nsiqcppstyle.py', '-f', 'filefilter.txt', '--output=csv', '-o', 'output/' + newdoc.folder_string, 'media/' + newdoc.folder_string])
-            
-            os.chdir(cwd)
-            print("****************************")
+
+            nsiqcppstyle.main(['nsiqcppstyle.py', '-f', 'filefilter.txt', 'media/documents/' + newdoc.folder_string])
             
             return redirect('final')
     else:
