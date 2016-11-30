@@ -207,6 +207,36 @@ def ErrorInternal(t, ruleName, message):
  
 Error = ErrorInternal
 
+def Total(t, ruleName, message):
+    """
+    Print error 
+    """
+    global rule
+    ruleName = ruleName[6:]
+    if t == None:
+        return
+    if  nsiqcppstyle_checker.Search(r"//\s*NS", t.line) == None and not _nsiqcppstyle_state.CheckRuleSuppression(ruleName):
+        _nsiqcppstyle_state.IncrementTotalCount(ruleName, t.filename)
+        # url = ""
+        # if _nsiqcppstyle_state.showUrl :
+        #     url = "http://nsiqcppstyle.appspot.com/rule_doc/" + ruleName
+        # if _nsiqcppstyle_state.output_format == 'emacs':
+        #     sys.stdout.write('%s:%s:  %s  [%s] %s\n' % (
+        #       t.filename, t.lineno, message, ruleName, url))
+        # elif _nsiqcppstyle_state.output_format == 'vs7':
+        #     sys.stdout.write('%s(%s, %s):  %s  [%s] %s\n' % (
+        #       t.filename, t.lineno, t.column, message, ruleName, url))
+        # elif _nsiqcppstyle_state.output_format == 'eclipse':
+        #     sys.stdout.write('  File "%s", line %d %s (%s)\n' %(t.filename, t.lineno, message, ruleName))
+        # elif _nsiqcppstyle_state.output_format == 'csv':
+        #     global writer
+        #     global csvfile
+        #     print("t.filename", "t.lineno", "t.column", "message", "ruleName", "url")
+        #     writer.writerow(["t.filename", "t.lineno", "t.column", "message", "ruleName", "url"])
+        #     csvfile.flush() # whenever you want, and/or
+        # elif _nsiqcppstyle_state.output_format == 'xml':
+        #     writer.write("""<error line='%d' col='%d' severity='warning' message='%s' source='%s'/>\n""" % (t.lineno, t.column, escape(message).replace("'", "\""), ruleName))        
+ 
 class DummyToken:
     def __init__(self, filename, line, lineno, column):
         self.filename = filename
