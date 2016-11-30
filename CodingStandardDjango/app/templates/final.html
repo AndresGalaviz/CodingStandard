@@ -1,5 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
+{% load static %}
 {% block content %}
+<nav class="indigo" role="navigation">
+  <div class="nav-wrapper container">
+    <a id="logo-container" href="http://tec.mx/" class="brand-logo">
+      <img id="tec-logo" src="{% static "img/logo-tec.png" %}" alt="">
+    </a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="../" class="white-text">Inicio</a></li>
+      <li><a href="/input" class="white-text">Input</a></li>
+    </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li><a href="../" class="white-text">Inicio</a></li>
+      <li><a href="/input" class="black-text">Input</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
 <!-- Pantalla de procesado completado -->
 <div class="container">
     <div class="row">
@@ -9,7 +27,7 @@
     </div>
     <div class="row">
         <div class="center-align">
-            <a class="waves-effect waves-light btn" href="input.html">Continuar</a>
+            <a class="waves-effect waves-light btn" href="/input">Continuar</a>
         </div>
     </div>
 </div>
