@@ -28,6 +28,9 @@ def RunRule(lexer, contextStack) :
             if(not bool(re.search(r"^[a-z]+([A-Z][a-z]*[0-9]*)+$", t2.value))):
                 nsiqcppstyle_reporter.Error(t, __name__, 
                       t.type + " function declaration " + t2.value + " is incorrect\n")
+            else:
+                nsiqcppstyle_reporter.Total(t, __name__, 
+                      t.type + " function declaration " + t2.value + " is correct\n")
        
 ruleManager.AddRule(RunRule)
 ###########################################################################################
