@@ -9,6 +9,12 @@
     2 / May / 2016
     Version 1.0
 */
+
+/*
+    functionOne
+
+    return 1
+*/
 int functionOne()
 {
 return 1;

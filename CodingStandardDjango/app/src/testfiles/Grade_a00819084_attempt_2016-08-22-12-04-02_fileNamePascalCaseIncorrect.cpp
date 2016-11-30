@@ -9,6 +9,12 @@
     2 / May / 2016
     Version 1.0
 */
+
+/*
+    main
+
+    runs program
+*/
 int main()
 {
     return 0;
