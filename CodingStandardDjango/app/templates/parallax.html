@@ -1,6 +1,22 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
+<nav class="indigo" role="navigation">
+  <div class="nav-wrapper container">
+    <a id="logo-container" href="http://tec.mx/" class="brand-logo">
+      <img id="tec-logo" src="{% static "img/logo-tec.png" %}" alt="">
+    </a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="input/" class="white-text">Input</a></li>
+    </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li><a href="input/" class="black-text">Input</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
+
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
     <div class="container">
@@ -13,7 +29,7 @@
         </h5>
       </div>
       <div class="row center">
-        <a href="" id="download-button" class="btn-large waves-effect waves-light indigo lighten-1">Get Started</a>
+        <a href="input/" id="download-button" class="btn-large waves-effect waves-light indigo lighten-1">Get Started</a>
       </div>
       <br><br>
 
