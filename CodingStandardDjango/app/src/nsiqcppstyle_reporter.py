@@ -36,17 +36,18 @@ import os
 csvfile = None
 writer = None
 target = None
-outputSavedPath = None
+
 def PrepareReport(outputPath, format) :
     """
     Set up sth like report headers  
     """
     global outputSavedPath
-    print("TEST")
+    
     if format == "csv" :
+        outputSavedPath = None
         if os.path.isdir(outputPath) :
             outputSavedPath = os.path.join(outputPath, "nsiqcppstyle_report.csv")
-        
+        _nsiqcppstyle_state.SetOutPutCSV(outputSavedPath)
         csvfile = file(outputSavedPath, "wb")
         writer = csv.writer(csvfile, delimiter=",")
         writer.writerow(("File", "Line", "Column", "Message", "Rule", "Rule Url"))
@@ -184,8 +185,6 @@ def ErrorInternal(t, ruleName, message):
     """
     
     global rule
-    global outputSavedPath
-    print(outputSavedPath)
     ruleName = ruleName[6:]
     if t == None :
         return
@@ -205,8 +204,9 @@ def ErrorInternal(t, ruleName, message):
         elif _nsiqcppstyle_state.output_format == 'eclipse':
             sys.stdout.write('  File "%s", line %d %s (%s)\n' %(t.filename, t.lineno, message, ruleName))
         elif _nsiqcppstyle_state.output_format == 'csv':
-            print("WRITING CSV", outputSavedPath)
-            csvfile = open(outputSavedPath, "wb")
+            outputSavedPath = _nsiqcppstyle_state.GetOutPutCSV()
+            print("WRITING CSV", _nsiqcppstyle_state.GetOutPutCSV())
+            csvfile = open(outputSavedPath, "a")
             writer = csv.writer(csvfile, delimiter=",")
             writer.writerow((t.filename, t.lineno, t.column, message, ruleName, url))
             csvfile.close()
