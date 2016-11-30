@@ -24,6 +24,8 @@
 # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+from django.http import HttpResponse
+import csv
 
 class _NsiqCppStyleState(object):
     """Maintains module-wide state.."""
@@ -46,10 +48,20 @@ class _NsiqCppStyleState(object):
         self.suppressRules = {}
         self.varMap = {}
         self.output_location = None
-
-    def SetOutPutCSV(self, output_location):
+        self.response = None
+        self.writer = None
+    def SetOutPutCSV(self, outputSavedPath):
         """Sets the output location for errors."""
-        self.output_location = output_location
+        self.response = HttpResponse(content_type='text/csv')
+        self.response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+        self.writer = csv.writer(self.response, delimiter=",")
+        self.writer.writerow(("File", "Line", "Column", "Message", "Rule", "Rule Url"))
+
+    def WriteOutputCSV(self, output_line):
+        self.writer.writerow(output_line)
+    
+    def GetResponse(self):
+        return self.response
 
     def SetOutputFormat(self, output_format):
         """Sets the output format for errors."""

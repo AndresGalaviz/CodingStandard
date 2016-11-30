@@ -52,9 +52,9 @@ def input(request):
             # Redirect to the document list after POST
 
 
-            nsiqcppstyle.main(['nsiqcppstyle.py', '--output=csv', '-f', 'filefilter.txt', 'media/documents/' + newdoc.folder_string])
+            response = nsiqcppstyle.main(['nsiqcppstyle.py', '--output=csv', '-f', 'filefilter.txt', 'media/documents/' + newdoc.folder_string])
             
-            return redirect('final')
+            return response
     else:
         form = DocumentForm()  # A empty, unbound form
 

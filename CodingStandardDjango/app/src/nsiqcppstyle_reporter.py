@@ -48,10 +48,6 @@ def PrepareReport(outputPath, format) :
         if os.path.isdir(outputPath) :
             outputSavedPath = os.path.join(outputPath, "nsiqcppstyle_report.csv")
         _nsiqcppstyle_state.SetOutPutCSV(outputSavedPath)
-        csvfile = file(outputSavedPath, "wb")
-        writer = csv.writer(csvfile, delimiter=",")
-        writer.writerow(("File", "Line", "Column", "Message", "Rule", "Rule Url"))
-        csvfile.close()
     elif format == "xml" :
         if os.path.isdir(outputPath) :
             outputSavedPath = os.path.join(outputPath, "nsiqcppstyle_report.xml")
@@ -204,12 +200,7 @@ def ErrorInternal(t, ruleName, message):
         elif _nsiqcppstyle_state.output_format == 'eclipse':
             sys.stdout.write('  File "%s", line %d %s (%s)\n' %(t.filename, t.lineno, message, ruleName))
         elif _nsiqcppstyle_state.output_format == 'csv':
-            outputSavedPath = _nsiqcppstyle_state.GetOutPutCSV()
-            print("WRITING CSV", _nsiqcppstyle_state.GetOutPutCSV())
-            csvfile = open(outputSavedPath, "a")
-            writer = csv.writer(csvfile, delimiter=",")
-            writer.writerow((t.filename, t.lineno, t.column, message, ruleName, url))
-            csvfile.close()
+            _nsiqcppstyle_state.WriteOutputCSV((t.filename, t.lineno, t.column, message, ruleName, url))
         elif _nsiqcppstyle_state.output_format == 'xml':
             writer.write("""<error line='%d' col='%d' severity='warning' message='%s' source='%s'/>\n""" % (t.lineno, t.column, escape(message).replace("'", "\""), ruleName))        
  
