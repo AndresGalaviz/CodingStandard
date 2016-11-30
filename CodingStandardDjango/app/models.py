@@ -11,5 +11,5 @@ class Document(models.Model):
     year = str(now.year)
     month = str(now.month)
     day = str(now.day)
-    folder_string = 'media/documents/' + year + month + day + folder_id
+    folder_string = 'documents/' + year + month + day + folder_id
     docfile = models.FileField(upload_to = foldername)
