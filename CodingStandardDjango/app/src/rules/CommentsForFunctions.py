@@ -1,5 +1,5 @@
 import nsiqcppstyle_reporter
-from nsiqcppstyle_rulemanager import *
+from app.src.nsiqcppstyle_rulemanager import *
 
 # Rule Definition
 def RunRule(lexer, fullName, decl, contextStack, typeContext):

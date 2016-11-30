@@ -27,9 +27,9 @@
     */
 
 """
-from nsiqcppstyle_rulehelper import  *
-from nsiqcppstyle_reporter import *
-from nsiqcppstyle_rulemanager import *
+from app.src.nsiqcppstyle_rulehelper import  *
+from app.src.nsiqcppstyle_reporter import *
+from app.src.nsiqcppstyle_rulemanager import *
 import datetime
 import re
 

@@ -14,9 +14,9 @@
     #include <math.h>
 
 """
-from nsiqcppstyle_rulehelper import *
-from nsiqcppstyle_reporter import *
-from nsiqcppstyle_rulemanager import *
+from app.src.nsiqcppstyle_rulehelper import *
+from app.src.nsiqcppstyle_reporter import *
+from app.src.nsiqcppstyle_rulemanager import *
 
 STANDARD_LIBRARIES = " cstddef limits climits cfloat cstdint new typeinfo exception ciso646 exception_list " \
                     "initializer_list csignal csetjmp cstdalign cstdarg cstdbool ctime stdexcept cassert cerrno " \

@@ -32,12 +32,12 @@ import os  # @UnusedImport
 import re
 import sys  # @UnusedImport
 import copy
-import nsiqcppstyle_checker
-import nsiqcppstyle_state
-import nsiqcppstyle_rulemanager
-import nsiqcppstyle_reporter
-import updateagent.agent
-from nsiqcppstyle_util import *  # @UnusedWildImport
+import app.src.nsiqcppstyle_checker as nsiqcppstyle_checker
+import app.src.nsiqcppstyle_state as nsiqcppstyle_state
+import app.src.nsiqcppstyle_rulemanager as nsiqcppstyle_rulemanager
+import app.src.nsiqcppstyle_reporter as nsiqcppstyle_reporter
+import app.src.updateagent.agent as agent
+from app.src.nsiqcppstyle_util import *  # @UnusedWildImport
 try:
     set()
 except NameError:

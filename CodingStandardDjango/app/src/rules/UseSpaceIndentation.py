@@ -20,9 +20,9 @@ In addition, it suppresses the violation when the line contains only spaces and 
     }
 
 """
-from nsiqcppstyle_rulehelper import  *
-from nsiqcppstyle_reporter import *
-from nsiqcppstyle_rulemanager import *
+from app.src.nsiqcppstyle_rulehelper import  *
+from app.src.nsiqcppstyle_reporter import *
+from app.src.nsiqcppstyle_rulemanager import *
 
 # Rule Definition
 def RunRule(lexer, line, lineno) :

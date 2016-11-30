@@ -11,8 +11,8 @@ Filenames should use PascalCase formating.
     BdSc.h
 
 """
-from nsiqcppstyle_reporter import  * #@UnusedWildImport
-from nsiqcppstyle_rulemanager import * #@UnusedWildImport
+from app.src.nsiqcppstyle_reporter import  * #@UnusedWildImport
+from app.src.nsiqcppstyle_rulemanager import * #@UnusedWildImport
 import re
 
 # Rule Definition

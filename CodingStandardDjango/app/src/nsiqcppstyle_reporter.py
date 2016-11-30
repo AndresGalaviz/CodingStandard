@@ -25,9 +25,9 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import nsiqcppstyle_state
-import nsiqcppstyle_checker
-import nsiqcppstyle_rulemanager
+import app.src.nsiqcppstyle_state as nsiqcppstyle_state
+import app.src.nsiqcppstyle_checker as nsiqcppstyle_checker
+import app.src.nsiqcppstyle_rulemanager as nsiqcppstyle_rulemanager
 import sys
 import csv
 import os
