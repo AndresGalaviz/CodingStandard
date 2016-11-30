@@ -77,10 +77,10 @@ class _NsiqCppStyleState(object):
         self.totalPerChecker[category] = self.totalPerChecker.get(category, 0) + 1
 
         errorsPerFile = self.errorPerFile.get(file, {})
-        totalsPerFile = self.totalsPerFile.get(file, {})
+        totalsPerFile = self.totalPerFile.get(file, {})
 
         errorsPerFile[category] = errorsPerFile.get(category, 0) + 1
-        totalsPerFile[category] = errorsPerFile.get(category, 0) + 1
+        totalsPerFile[category] = totalsPerFile.get(category, 0) + 1
 
         self.errorPerFile[file] = errorsPerFile
         self.totalPerFile[file] = totalsPerFile
@@ -88,8 +88,8 @@ class _NsiqCppStyleState(object):
     def IncrementTotalCount(self, category, file):
         self.total_count += 1
         self.totalPerChecker[category] = self.totalPerChecker.get(category, 0) + 1
-        totalsPerFile = self.totalsPerFile.get(file, {})
-        totalsPerFile[category] = errorsPerFile.get(category, 0) + 1
+        totalsPerFile = self.totalPerFile.get(file, {})
+        totalsPerFile[category] = totalsPerFile.get(category, 0) + 1
         self.totalPerFile[file] = totalsPerFile
 
     def SuppressRule(self, ruleName):

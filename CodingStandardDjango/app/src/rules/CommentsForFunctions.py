@@ -25,6 +25,8 @@ def RunRule(lexer, fullName, decl, contextStack, typeContext):
 
         if not(firstLineOpenBlockComment and secondLineFunctionName and thirdLineEmpty and fourthLineDescription):
             nsiqcppstyle_reporter.Error(t, __name__, "Function comment doesn't follow format style")
+        else:
+            nsiqcppstyle_reporter.Total(t, __name__, "Function comment follows format style")
 
 
 ruleManager.AddFunctionNameRule(RunRule)
