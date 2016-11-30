@@ -63,6 +63,8 @@ def RunRule(lexer, contextStack):
         # Verify if it is a standard library
         if STANDARD_LIBRARIES.find(" " + libraryName + " ") == -1:
             nsiqcppstyle_reporter.Error(token, __name__, "Library name must be part of C++ standard libraries")
+        else:
+            nsiqcppstyle_reporter.Total(token, __name__, "Correct Library Include")
 
 
 ruleManager.AddRule(RunRule)

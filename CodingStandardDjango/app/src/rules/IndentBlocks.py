@@ -66,6 +66,8 @@ def RunRule(lexer, contextStack) :
             if nt != None and nt != t2 and nt.type not in ("LBRACE", "RBRACE") and GetIndentation(nt) <= column :
                 nsiqcppstyle_reporter.Error(nt, __name__, 
                       "Indent in the block. token(%s) seems to be located left column of previsous brace" % nt.value )
+            else:
+                nsiqcppstyle_reporter.Total(nt, __name__, "Correct indentation")
 
 ruleManager.AddFunctionScopeRule(RunRule)
 

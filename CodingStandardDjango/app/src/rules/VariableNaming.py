@@ -61,7 +61,12 @@ def RunRule(lexer, contextStack) :
             nsiqcppstyle_reporter.Error(t, __name__, 
                       t.type + " " + errorType + " (Prefix Type: " + prefixType + 
                       " + " + errorMessage + "): \'" + t2.value + "\' is incorrect")
-
+        else:
+            if t0.type == "CONST":
+                nsiqcppstyle_reporter.Total(t, __name__, "Proper CONST name")
+            else:
+                nsiqcppstyle_reporter.Total(t, __name__, "Proper variable name")
+                
 ruleManager.AddRule(RunRule)
 ###########################################################################################
 # Unit Test

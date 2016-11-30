@@ -56,6 +56,8 @@ def RunRule(lexer, filename, dirname) :
         # Append error message
         if(error):
             nsiqcppstyle_reporter.Error(comment, __name__, "\nDoes not comply with the standard.\n" + error)
+        else:
+            nsiqcppstyle_reporter.Total(comment, __name__, "\nDoes comply with the standard.\n")
     else:
         nsiqcppstyle_reporter.Error(comment, __name__, "Does not have initial comments")
 ruleManager.AddFileStartRule(RunRule)

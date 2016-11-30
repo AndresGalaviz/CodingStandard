@@ -32,6 +32,8 @@ def RunRule(lexer, line, lineno) :
         # If we find a tab then we raise an error
         if Search("^\t", line) :
             nsiqcppstyle_reporter.Error(DummyToken(lexer.filename, line, lineno, 0), __name__, "Do not use tab for indent")
+        else:
+            nsiqcppstyle_reporter.Total(DummyToken(lexer.filename, line, lineno, 0), __name__, "Uses spaces")
 
 ruleManager.AddLineRule(RunRule)
 
