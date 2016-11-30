@@ -41,6 +41,7 @@ def PrepareReport(outputPath, format) :
     Set up sth like report headers  
     """
     global writer
+    global csvfile
     if format == "csv" :
         if os.path.isdir(outputPath) :
             outputPath = os.path.join(outputPath, "nsiqcppstyle_report.csv")
@@ -88,6 +89,7 @@ def CloseReport(format) :
         global writer
         writer.write("</checkstyle>\n")
         writer.close()
+    csvfile.close() # Done
 ####################################################################################################
 
 #ruleMap = {}        
@@ -179,7 +181,6 @@ def ErrorInternal(t, ruleName, message):
     """
     global rule
     ruleName = ruleName[6:]
-        
     if t == None :
         return
     if  nsiqcppstyle_checker.Search(r"//\s*NS", t.line) == None and not _nsiqcppstyle_state.CheckRuleSuppression(ruleName):
@@ -197,7 +198,10 @@ def ErrorInternal(t, ruleName, message):
             sys.stdout.write('  File "%s", line %d %s (%s)\n' %(t.filename, t.lineno, message, ruleName))
         elif _nsiqcppstyle_state.output_format == 'csv':
             global writer
-            writer.writerow((t.filename, t.lineno, t.column, message, ruleName, url))
+            global csvfile
+            print("t.filename", "t.lineno", "t.column", "message", "ruleName", "url")
+            writer.writerow(["t.filename", "t.lineno", "t.column", "message", "ruleName", "url"])
+            csvfile.flush() # whenever you want, and/or
         elif _nsiqcppstyle_state.output_format == 'xml':
             writer.write("""<error line='%d' col='%d' severity='warning' message='%s' source='%s'/>\n""" % (t.lineno, t.column, escape(message).replace("'", "\""), ruleName))        
  
