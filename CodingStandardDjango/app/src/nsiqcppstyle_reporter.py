@@ -60,9 +60,13 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode) :
     """
     fileCount = len(analyzedFiles)
     violatedFileCount = len(nsiqcppstyle_state.errorPerFile.keys())
+    violatedRules = nsiqcppstyle_state.error_count
+    totalAsserts = nsiqcppstyle_state.total_count
     buildQuality = 0
+    percentage = 0
     if fileCount != 0 :
-        buildQuality = (fileCount - violatedFileCount) * 100.0 / fileCount 
+        buildQuality = (fileCount - violatedFileCount) * 100.0 / fileCount
+        percentage = ((totalAsserts - violatedRules ) * 100.0 / totalAsserts)
     
     
     _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Available Rules     :",  nsiqcppstyle_rulemanager.ruleManager.availRuleCount))
@@ -73,6 +77,7 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode) :
     _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Analyzed Files      :",  len(analyzedFiles)))
     _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Violated Files Count:",  violatedFileCount))
     _nsiqcppstyle_state.WriteOutputCSV ((" ** Build Quality             :",  buildQuality))
+    _nsiqcppstyle_state.WriteOutputCSV ((" ** Percentage Quality        :",  percentage))
     if not ciMode :
         
         for checker in nsiqcppstyle_state.errorPerChecker.keys() :
