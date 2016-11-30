@@ -53,7 +53,7 @@ class _NsiqCppStyleState(object):
     def SetOutPutCSV(self, outputSavedPath):
         """Sets the output location for errors."""
         self.response = HttpResponse(content_type='text/csv')
-        self.response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+        self.response['Content-Disposition'] = 'attachment; filename="report.csv"'
         self.writer = csv.writer(self.response, delimiter=",")
         self.writer.writerow(("File", "Line", "Column", "Message", "Rule", "Rule Url"))
 

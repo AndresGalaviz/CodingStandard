@@ -69,6 +69,7 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode) :
     _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Applied Rules       :",  len(nsiqcppstyle_state.checkers)))
     _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Violated Rules      :",  len(nsiqcppstyle_state.errorPerChecker.keys())))
     _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Errors Occurs       :",  nsiqcppstyle_state.error_count))
+    _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Assert & Errors     :",  nsiqcppstyle_state.total_count))
     _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Analyzed Files      :",  len(analyzedFiles)))
     _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Violated Files Count:",  violatedFileCount))
     _nsiqcppstyle_state.WriteOutputCSV ((" ** Build Quality             :",  buildQuality))
