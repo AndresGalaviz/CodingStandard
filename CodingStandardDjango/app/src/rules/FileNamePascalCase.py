@@ -13,6 +13,7 @@ Filenames should use PascalCase formating.
 """
 from app.src.nsiqcppstyle_reporter import  * #@UnusedWildImport
 from app.src.nsiqcppstyle_rulemanager import * #@UnusedWildImport
+import app.src.nsiqcppstyle_reporter as nsiqcppstyle_reporter
 import re
 
 # Rule Definition

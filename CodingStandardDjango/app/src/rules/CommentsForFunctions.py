@@ -1,4 +1,4 @@
-import nsiqcppstyle_reporter
+import app.src.nsiqcppstyle_reporter as nsiqcppstyle_reporter
 from app.src.nsiqcppstyle_rulemanager import *
 
 # Rule Definition

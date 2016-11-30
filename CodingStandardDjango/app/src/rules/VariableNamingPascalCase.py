@@ -22,6 +22,7 @@ if it's shown... this rule reports a violation.
 from app.src.nsiqcppstyle_rulehelper import  *
 from app.src.nsiqcppstyle_reporter import *
 from app.src.nsiqcppstyle_rulemanager import *
+import app.src.nsiqcppstyle_reporter as nsiqcppstyle_reporter
 import re
 
 # Rule Definition

@@ -47,6 +47,7 @@ Indent blocks inside of function.
 from app.src.nsiqcppstyle_reporter import *
 from app.src.nsiqcppstyle_rulemanager import *
 from app.src.nsiqcppstyle_rulehelper import *
+import app.src.nsiqcppstyle_reporter as nsiqcppstyle_reporter
 
 # Rule Definition
 def RunRule(lexer, contextStack) :
