@@ -45,6 +45,11 @@ class _NsiqCppStyleState(object):
         self.reportError = False
         self.suppressRules = {}
         self.varMap = {}
+        self.output_location = None
+
+    def SetOutPutCSV(self, output_location):
+        """Sets the output location for errors."""
+        self.output_location = output_location
 
     def SetOutputFormat(self, output_format):
         """Sets the output format for errors."""
@@ -103,5 +108,9 @@ class _NsiqCppStyleState(object):
       
     def GetVar(self, key, defaultValue):
         return self.varMap.get(key, defaultValue)
+
+    def GetOutPutCSV(self):
+        """Gets the output location for errors."""
+        return self.output_location
 
 _nsiqcppstyle_state = _NsiqCppStyleState()
