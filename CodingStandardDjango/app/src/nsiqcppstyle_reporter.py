@@ -73,7 +73,6 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode) :
     print (" ** Total Applied Rules       : %d" % len(nsiqcppstyle_state.checkers))
     print (" ** Total Violated Rules      : %d" % len(nsiqcppstyle_state.errorPerChecker.keys()))
     print (" ** Total Errors Occurs       : %d" % nsiqcppstyle_state.error_count)
-    print (" ** Total Asserts and Errors  : %d" % nsiqcppstyle_state.total_count)
     print (" ** Total Analyzed Files      : %d" % len(analyzedFiles))
     print (" ** Total Violated Files Count: %d" % violatedFileCount)
     print (" ** Build Quality             : %.2f%%" % buildQuality)
