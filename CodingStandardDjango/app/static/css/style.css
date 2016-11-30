@@ -59,3 +59,8 @@ footer.page-footer {
 #tec-logo {
   height: 70px;
 }
+
+.fill-height {
+  min-height: 700px;
+  background-image: url("../img/background1.jpg");
+}
