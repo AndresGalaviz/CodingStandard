@@ -63,27 +63,27 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode) :
     buildQuality = 0
     if fileCount != 0 :
         buildQuality = (fileCount - violatedFileCount) * 100.0 / fileCount 
-    print "\n"
-    print ("=================================== Summary Report ===================================");
-    print (" ** Total Available Rules     : %d" % nsiqcppstyle_rulemanager.ruleManager.availRuleCount)
-    print (" ** Total Applied Rules       : %d" % len(nsiqcppstyle_state.checkers))
-    print (" ** Total Violated Rules      : %d" % len(nsiqcppstyle_state.errorPerChecker.keys()))
-    print (" ** Total Errors Occurs       : %d" % nsiqcppstyle_state.error_count)
-    print (" ** Total Analyzed Files      : %d" % len(analyzedFiles))
-    print (" ** Total Violated Files Count: %d" % violatedFileCount)
-    print (" ** Build Quality             : %.2f%%" % buildQuality)
+    
+    
+    _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Available Rules     :",  nsiqcppstyle_rulemanager.ruleManager.availRuleCount))
+    _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Applied Rules       :",  len(nsiqcppstyle_state.checkers)))
+    _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Violated Rules      :",  len(nsiqcppstyle_state.errorPerChecker.keys())))
+    _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Errors Occurs       :",  nsiqcppstyle_state.error_count))
+    _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Analyzed Files      :",  len(analyzedFiles)))
+    _nsiqcppstyle_state.WriteOutputCSV ((" ** Total Violated Files Count:",  violatedFileCount))
+    _nsiqcppstyle_state.WriteOutputCSV ((" ** Build Quality             :",  buildQuality))
     if not ciMode :
-        print ("\n================================ Violated Rule Details ===============================")
+        
         for checker in nsiqcppstyle_state.errorPerChecker.keys() :
-            print " - ", checker, "rule violated :", nsiqcppstyle_state.errorPerChecker[checker]
-        print ("\n================================ Violated File Details ===============================")
+             _nsiqcppstyle_state.WriteOutputCSV (( " - ", checker, "rule violated :", nsiqcppstyle_state.errorPerChecker[checker]))
+        
         for eachFile in nsiqcppstyle_state.errorPerFile.keys() :
             count = 0
             for  eachRule in nsiqcppstyle_state.errorPerFile[eachFile].keys() :
                 count += nsiqcppstyle_state.errorPerFile[eachFile][eachRule]
-            print " - ", eachFile, " violated in total : ", count
+            _nsiqcppstyle_state.WriteOutputCSV (( " - ", eachFile, " violated in total : ", count))
             for  eachRule in nsiqcppstyle_state.errorPerFile[eachFile].keys() :
-                print "   * ", eachRule, " : ", nsiqcppstyle_state.errorPerFile[eachFile][eachRule]
+                _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule, " : ", nsiqcppstyle_state.errorPerFile[eachFile][eachRule]))
 def CloseReport(format) :
     if format == "xml" :
         global writer
