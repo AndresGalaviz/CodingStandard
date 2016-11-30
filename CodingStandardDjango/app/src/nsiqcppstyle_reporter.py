@@ -81,7 +81,8 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode) :
     if not ciMode :
         
         for checker in nsiqcppstyle_state.errorPerChecker.keys() :
-             _nsiqcppstyle_state.WriteOutputCSV (( " - ", checker, "rule violated :", nsiqcppstyle_state.errorPerChecker[checker]))
+            _nsiqcppstyle_state.WriteOutputCSV (( " - ", checker + " rule violated :", nsiqcppstyle_state.errorPerChecker[checker]))
+            _nsiqcppstyle_state.WriteOutputCSV (( " - ", checker + " total applies :", nsiqcppstyle_state.totalPerChecker[checker]))
         
         for eachFile in nsiqcppstyle_state.errorPerFile.keys() :
             count = 0
@@ -89,7 +90,13 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode) :
                 count += nsiqcppstyle_state.errorPerFile[eachFile][eachRule]
             _nsiqcppstyle_state.WriteOutputCSV (( " - ", eachFile, " violated in total : ", count))
             for  eachRule in nsiqcppstyle_state.errorPerFile[eachFile].keys() :
-                _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule, " : ", nsiqcppstyle_state.errorPerFile[eachFile][eachRule]))
+                errorInRule = nsiqcppstyle_state.errorPerFile[eachFile][eachRule]
+                totalApplies = nsiqcppstyle_state.totalPerFile[eachFile][eachRule]
+                rulePercentage = ((totalApplies - errorInRule) * 100.0 / totalApplies)
+                _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule + " Error: ", errorInRule))
+                _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule + " Total: ", totalApplies))
+                _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule + " Percentage: ","%.2f%%" % rulePercentage))
+
 def CloseReport(format) :
     if format == "xml" :
         global writer
