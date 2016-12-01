@@ -42,6 +42,12 @@ def input(request):
     # Handle file upload
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
+        filename = request.POST.get('filename')
+        indentation = request.POST.get('indentation')
+        variables = request.POST.get('variables')
+        documentation = request.POST.get('documentation')
+        functions = request.POST.get('functions')
+
         if form.is_valid():
             for f in request.FILES.getlist('docfile'):
                 #f name of the file
