@@ -104,7 +104,7 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode, gra
                 
             for key, value in grading.iteritems():
                 #JULIO AQUI
-                finalGrade += (int(grading[key]) * actualGrades.get(key, 0)) / 100.0
+                finalGrade += (int(grading[key]) * actualGrades.get(key, 100)) / 100.0
             _nsiqcppstyle_state.WriteOutputCSV (( "   * ", "Final grade: ", finalGrade))
         
         for eachFile in analyzedFiles:
