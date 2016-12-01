@@ -73,6 +73,13 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">book</i>
+                        {{ form.library_directives }}
+                        <label class="active" for="functions">{{ form.library_directives.label }}</label>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="file-field input-field">
                         <div class="btn indigo lighten-1">
                             <i class="material-icons left">folder</i>
@@ -113,9 +120,10 @@
       var documentation = parseInt($('#documentation').val());
       var functions = parseInt($('#functions').val());
       var initial_comments = parseInt($('#initial_comments').val());
+      var library_directives = parseInt($('#library_directives').val());
 
-      var check = !$.isNumeric(filename) || !$.isNumeric(variables) || !$.isNumeric(indentation) || !$.isNumeric(indentation_blocks) || !$.isNumeric(documentation) || !$.isNumeric(functions) || !$.isNumeric(initial_comments);
-      var total = filename + variables + indentation + indentation_blocks + documentation + functions + initial_comments;
+      var check = !$.isNumeric(filename) || !$.isNumeric(variables) || !$.isNumeric(indentation) || !$.isNumeric(indentation_blocks) || !$.isNumeric(documentation) || !$.isNumeric(functions) || !$.isNumeric(initial_comments) || !$.isNumeric(library_directives);
+      var total = filename + variables + indentation + indentation_blocks + documentation + functions + initial_comments + library_directives;
       if(check) {
         $('#error').html('Todos los campos deben tener valores');
       }

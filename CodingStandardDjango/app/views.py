@@ -52,7 +52,8 @@ def input(request):
             'IndentBlocks': request.POST.get('indentation_blocks'),
             'CommentsForFunctions': request.POST.get('documentation'), 
             'FunctionNaming': request.POST.get('functions'),
-            'InitialComments': request.POST.get('initial_comments')
+            'InitialComments': request.POST.get('initial_comments'),
+            'IncludeLibraryDirectives' : request.POST.get('library_directives')
         }
         
         if form.is_valid():

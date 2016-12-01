@@ -37,6 +37,11 @@ class DocumentForm(forms.Form):
         widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'initial_comments'})
     )
 
+    library_directives = forms.CharField(
+        label = 'Incluir librerías',
+        widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'library_directives'})
+    )
+
     docfile = forms.FileField(
         label = 'Elija uno o más archivos',
         widget = forms.FileInput(attrs = {'accept': '.cpp', 'multiple': 'true'})

@@ -101,8 +101,7 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode, gra
                 _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule + " Total: ", totalApplies))
                 _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule + " Percentage: ","%.2f%%" % rulePercentage))
                 actualGrades.update({eachRule: rulePercentage})
-            print(grading)
-            print(actualGrades)
+                
             for key, value in grading.iteritems():
                 finalGrade += (int(grading[key]) * actualGrades.get(key, 0)) / 100.0
             _nsiqcppstyle_state.WriteOutputCSV (( "   * ", "Final grade: ", finalGrade))
