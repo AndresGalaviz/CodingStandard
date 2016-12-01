@@ -25,7 +25,7 @@
             <div class="col s8 offset-s2">
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons prefix">attachment </i>
+                        <i class="material-icons prefix">attachment</i>
                         {{ form.filename }}
                         <label class="active" for="filename">{{ form.filename.label }}</label>
                     </div>  
@@ -46,6 +46,13 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
+                        <i class="material-icons prefix">code</i>
+                        {{ form.indentation_blocks }}
+                        <label class="active" for="indentation_blocks">{{ form.indentation_blocks.label }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
                         <i class="material-icons prefix">description</i>
                         {{ form.documentation }}
                         <label class="active" for="documentation">{{ form.documentation.label }}</label>
@@ -56,6 +63,13 @@
                         <i class="material-icons prefix">functions</i>
                         {{ form.functions }}
                         <label class="active" for="functions">{{ form.functions.label }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">comment</i>
+                        {{ form.initial_comments }}
+                        <label class="active" for="initial_comments">{{ form.initial_comments.label }}</label>
                     </div>
                 </div>
                 <div class="row">
@@ -95,11 +109,13 @@
       var filename = parseInt($('#filename').val());
       var variables = parseInt($('#variables').val());
       var indentation = parseInt($('#indentation').val());
+      var indentation_blocks = parseInt($('#indentation_blocks').val());
       var documentation = parseInt($('#documentation').val());
       var functions = parseInt($('#functions').val());
+      var initial_comments = parseInt($('#initial_comments').val());
 
-      var check = !$.isNumeric(filename) || !$.isNumeric(variables) || !$.isNumeric(indentation) || !$.isNumeric(documentation) || !$.isNumeric(functions);
-      var total = filename + variables + indentation + documentation + functions;
+      var check = !$.isNumeric(filename) || !$.isNumeric(variables) || !$.isNumeric(indentation) || !$.isNumeric(indentation_blocks) || !$.isNumeric(documentation) || !$.isNumeric(functions) || !$.isNumeric(initial_comments);
+      var total = filename + variables + indentation + indentation_blocks + documentation + functions + initial_comments;
       if(check) {
         $('#error').html('Todos los campos deben tener valores');
       }
