@@ -53,7 +53,7 @@ def input(request):
             'FunctionNaming': request.POST.get('functions'),
             'InitialComments': request.POST.get('initial_comments')
         }
-
+        
         if form.is_valid():
             for f in request.FILES.getlist('docfile'):
                 #f name of the file

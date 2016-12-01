@@ -84,8 +84,11 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode, gra
             _nsiqcppstyle_state.WriteOutputCSV (( " - ", checker + " rule violated :", nsiqcppstyle_state.errorPerChecker[checker]))
             _nsiqcppstyle_state.WriteOutputCSV (( " - ", checker + " total applies :", nsiqcppstyle_state.totalPerChecker[checker]))
         
+        
         for eachFile in nsiqcppstyle_state.errorPerFile.keys() :
             count = 0
+            actualGrades = {}
+            finalGrade = 0
             for  eachRule in nsiqcppstyle_state.errorPerFile[eachFile].keys() :
                 count += nsiqcppstyle_state.errorPerFile[eachFile][eachRule]
             fileNameWithoutPath = eachFile.split("/", -1)[-1] # leaves substring after last /
@@ -97,6 +100,11 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode, gra
                 _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule + " Error: ", errorInRule))
                 _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule + " Total: ", totalApplies))
                 _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule + " Percentage: ","%.2f%%" % rulePercentage))
+                actualGrades.update({eachRule: rulePercentage})
+            # for key, value in grading.iteritems():
+            #     finalGrade += (grading[key] * actualGrades.get(key, 0)) / 100.0
+            # _nsiqcppstyle_state.WriteOutputCSV (( "   * ", "Final grade: ", finalGrade))
+                
 
 def CloseReport(format) :
     if format == "xml" :

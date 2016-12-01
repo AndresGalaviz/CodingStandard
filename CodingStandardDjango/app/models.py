@@ -10,6 +10,10 @@ class Document(models.Model):
     now = datetime.datetime.now()
     year = str(now.year)
     month = str(now.month)
+    if len(month) == 1:
+    	month = '0' + month
     day = str(now.day)
+    if len(day) == 1:
+    	day = '0' + day
     folder_string = year + month + day + folder_id
     docfile = models.FileField(upload_to = foldername)

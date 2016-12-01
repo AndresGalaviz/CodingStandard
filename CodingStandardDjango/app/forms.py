@@ -32,7 +32,7 @@ class DocumentForm(forms.Form):
         widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'functions'})
     )
 
-    intial_comments = forms.CharField(
+    initial_comments = forms.CharField(
         label = 'Comentarios iniciales',
         widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'initial_comments'})
     )

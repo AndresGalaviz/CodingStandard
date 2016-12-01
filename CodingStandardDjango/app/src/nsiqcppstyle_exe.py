@@ -127,7 +127,7 @@ Usage: nsiqcppstyle [Options]
     
 
 
-def main(argv=None):
+def main(argv = None, grading = None):
     global filename
     
     if argv is None:
@@ -290,7 +290,7 @@ def main(argv=None):
             
             nsiqcppstyle_reporter.EndTarget()
         
-        nsiqcppstyle_reporter.ReportSummaryToScreen(analyzedFiles, _nsiqcppstyle_state, filter, ciMode, argv[-1])
+        nsiqcppstyle_reporter.ReportSummaryToScreen(analyzedFiles, _nsiqcppstyle_state, filter, ciMode, grading)
         nsiqcppstyle_reporter.CloseReport(_nsiqcppstyle_state.output_format)
         return _nsiqcppstyle_state.GetResponse()
 

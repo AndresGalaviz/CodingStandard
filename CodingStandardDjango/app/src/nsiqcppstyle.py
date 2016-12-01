@@ -60,7 +60,9 @@ def GetRuntimePath() :
 
 def main(argv=None):    
     sys.path.append(GetRuntimePath())
-    return nsiqcppstyle_exe.main(argv)
+    grading = argv[-1]
+    argv = argv[: -1]
+    return nsiqcppstyle_exe.main(argv, grading)
 
 if __name__ == "__main__":
     sys.path.append(GetRuntimePath())
