@@ -54,7 +54,7 @@ def PrepareReport(outputPath, format) :
         writer = file(outputSavedPath, "wb")
         writer.write("<?xml version='1.0'?>\n<checkstyle version='4.4'>\n")
 
-def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode) :
+def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode, grading) :
     """
     Report Summary Info into the screen.
     """

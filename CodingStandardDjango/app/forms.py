@@ -17,6 +17,11 @@ class DocumentForm(forms.Form):
     	widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'indentation'})
     )
 
+    indentation_blocks = forms.CharField(
+        label = 'Bloques de Indentación',
+        widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'indentation_blocks'})
+    )
+
     documentation = forms.CharField(
     	label = 'Documentación',
     	widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'documentation'})
@@ -25,6 +30,11 @@ class DocumentForm(forms.Form):
     functions = forms.CharField(
         label = 'Nombres de funciones',
         widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'functions'})
+    )
+
+    intial_comments = forms.CharField(
+        label = 'Comentarios iniciales',
+        widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'initial_comments'})
     )
 
     docfile = forms.FileField(
