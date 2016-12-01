@@ -63,12 +63,8 @@ def input(request):
                 
                 f.name = str(capturedGroups.group(1)) + '_' +str(capturedGroups.group(3))
                 newdoc = Document(docfile = f)
-                
                 newdoc.save()
-                
             # Redirect to the document list after POST
-
-
             response = nsiqcppstyle.main([
                 'nsiqcppstyle.py', 
                 '--output=csv', '-f', 
