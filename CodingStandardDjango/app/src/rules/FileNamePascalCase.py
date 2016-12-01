@@ -20,7 +20,7 @@ import re
 def RunRule(lexer, filename, dirname) :
     # If the filename does not match the following regex then we raise an error
     # Regex: After any 44 characters and pascal case variable naming a ".cpp" should follow
-    if not bool(re.search(r'^.{44}([A-Z][a-z]*[0-9]*)+\.cpp$', filename)):
+    if not bool(re.search(r'^.{10}([A-Z][a-z]*[0-9]*)+\.cpp$', filename)):
         nsiqcppstyle_reporter.Error(nsiqcppstyle_reporter.DummyToken(lexer.filename, "", 0, 0), __name__, "Filename %s should use PascalCase formating." % filename)
     else:
         nsiqcppstyle_reporter.Total(nsiqcppstyle_reporter.DummyToken(lexer.filename, "", 0, 0), __name__, "Filename %s is correct." % filename)
