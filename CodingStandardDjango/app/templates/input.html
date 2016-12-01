@@ -52,6 +52,13 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">functions</i>
+                        {{ form.functions }}
+                        <label class="active" for="functions">{{ form.functions.label }}</label>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="file-field input-field">
                         <div class="btn indigo lighten-1">
                             <i class="material-icons left">folder</i>
@@ -89,9 +96,10 @@
       var variables = parseInt($('#variables').val());
       var indentation = parseInt($('#indentation').val());
       var documentation = parseInt($('#documentation').val());
+      var functions = parseInt($('#functions').val());
 
-      var check = !$.isNumeric(filename) || !$.isNumeric(variables) || !$.isNumeric(indentation) || !$.isNumeric(documentation);
-      var total = filename + variables + indentation + documentation;
+      var check = !$.isNumeric(filename) || !$.isNumeric(variables) || !$.isNumeric(indentation) || !$.isNumeric(documentation) || !$.isNumeric(functions);
+      var total = filename + variables + indentation + documentation + functions;
       if(check) {
         $('#error').html('Todos los campos deben tener valores');
       }

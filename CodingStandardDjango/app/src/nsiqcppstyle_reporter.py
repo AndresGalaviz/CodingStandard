@@ -54,6 +54,7 @@ def PrepareReport(outputPath, format) :
         writer = file(outputSavedPath, "wb")
         writer.write("<?xml version='1.0'?>\n<checkstyle version='4.4'>\n")
 
+
 def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode) :
     """
     Report Summary Info into the screen.
@@ -81,15 +82,23 @@ def ReportSummaryToScreen(analyzedFiles, nsiqcppstyle_state, filter, ciMode) :
     if not ciMode :
         
         for checker in nsiqcppstyle_state.errorPerChecker.keys() :
-             _nsiqcppstyle_state.WriteOutputCSV (( " - ", checker, "rule violated :", nsiqcppstyle_state.errorPerChecker[checker]))
+            _nsiqcppstyle_state.WriteOutputCSV (( " - ", checker + " rule violated :", nsiqcppstyle_state.errorPerChecker[checker]))
+            _nsiqcppstyle_state.WriteOutputCSV (( " - ", checker + " total applies :", nsiqcppstyle_state.totalPerChecker[checker]))
         
         for eachFile in nsiqcppstyle_state.errorPerFile.keys() :
             count = 0
             for  eachRule in nsiqcppstyle_state.errorPerFile[eachFile].keys() :
                 count += nsiqcppstyle_state.errorPerFile[eachFile][eachRule]
-            _nsiqcppstyle_state.WriteOutputCSV (( " - ", eachFile, " violated in total : ", count))
+            fileNameWithoutPath = eachFile.split("/", -1)[-1] # leaves substring after last /
+            _nsiqcppstyle_state.WriteOutputCSV (( " - ", fileNameWithoutPath, " violated in total : ", count))
             for  eachRule in nsiqcppstyle_state.errorPerFile[eachFile].keys() :
-                _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule, " : ", nsiqcppstyle_state.errorPerFile[eachFile][eachRule]))
+                errorInRule = nsiqcppstyle_state.errorPerFile[eachFile][eachRule]
+                totalApplies = nsiqcppstyle_state.totalPerFile[eachFile][eachRule]
+                rulePercentage = ((totalApplies - errorInRule) * 100.0 / totalApplies)
+                _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule + " Error: ", errorInRule))
+                _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule + " Total: ", totalApplies))
+                _nsiqcppstyle_state.WriteOutputCSV (( "   * ", eachRule + " Percentage: ","%.2f%%" % rulePercentage))
+
 def CloseReport(format) :
     if format == "xml" :
         global writer
@@ -206,7 +215,8 @@ def ErrorInternal(t, ruleName, message):
         elif _nsiqcppstyle_state.output_format == 'eclipse':
             sys.stdout.write('  File "%s", line %d %s (%s)\n' %(t.filename, t.lineno, message, ruleName))
         elif _nsiqcppstyle_state.output_format == 'csv':
-            _nsiqcppstyle_state.WriteOutputCSV((t.filename, t.lineno, t.column, message, ruleName, url))
+            fileNameWithoutPath = t.filename.split("/", -1)[-1] # leaves substring after last /
+            _nsiqcppstyle_state.WriteOutputCSV((fileNameWithoutPath, t.lineno, t.column, message, ruleName, url))
         elif _nsiqcppstyle_state.output_format == 'xml':
             writer.write("""<error line='%d' col='%d' severity='warning' message='%s' source='%s'/>\n""" % (t.lineno, t.column, escape(message).replace("'", "\""), ruleName))        
  

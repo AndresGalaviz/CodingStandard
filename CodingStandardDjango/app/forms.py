@@ -22,6 +22,11 @@ class DocumentForm(forms.Form):
     	widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'documentation'})
     )
 
+    functions = forms.CharField(
+        label = 'Nombres de funciones',
+        widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'functions'})
+    )
+
     docfile = forms.FileField(
         label = 'Elija uno o más archivos',
         widget = forms.FileInput(attrs = {'accept': '.cpp', 'multiple': 'true'})
