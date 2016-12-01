@@ -59,15 +59,10 @@ def input(request):
             for f in request.FILES.getlist('docfile'):
                 #f name of thefile
                 #f.read() contents of the file
-                f = re.search(r'^.{6}(.{9}).{9}(.{19})_(.+\.cpp)', str(f)).group(1)
+                #f = re.search(r'^.{6}(.{9}).{9}(.{19})_(.+\.cpp)', str(f)).group(1)
                 newdoc = Document(docfile = f)
-                
                 newdoc.save()
-                print("*************")
-                print(newdoc.docfile)
             # Redirect to the document list after POST
-
-
             response = nsiqcppstyle.main([
                 'nsiqcppstyle.py', 
                 '--output=csv', '-f', 
