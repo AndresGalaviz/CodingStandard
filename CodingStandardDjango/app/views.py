@@ -43,13 +43,15 @@ def input(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
 
-        #Dictionary for grading values
+        #Dictionary for grading values based on rules
         grading = {
-            'filename': request.POST.get('filename'), 
-            'indentation': request.POST.get('indentation'), 
-            'variables': request.POST.get('variables'), 
-            'documentation': request.POST.get('documentation'), 
-            'functions': request.POST.get('functions')
+            'FileNamePascalCase': request.POST.get('filename'),
+            'VariableNaming': request.POST.get('variables'), 
+            'UseSpaceIndentation': request.POST.get('indentation'),
+            'IndentBlocks': request.POST.get('indentation_blocks'),
+            'CommentsForFunctions': request.POST.get('documentation'), 
+            'FunctionNaming': request.POST.get('functions'),
+            'InitialComments': request.POST.get('initial_comments')
         }
 
         if form.is_valid():
@@ -62,7 +64,13 @@ def input(request):
             # Redirect to the document list after POST
 
 
-            response = nsiqcppstyle.main(['nsiqcppstyle.py', '--output=csv', '-f', 'filefilter.txt', 'media/documents/' + newdoc.folder_string, grading])
+            response = nsiqcppstyle.main([
+                'nsiqcppstyle.py', 
+                '--output=csv', '-f', 
+                'filefilter.txt', 
+                'media/documents/' + newdoc.folder_string, 
+                grading
+            ])
             
             return response
     else:

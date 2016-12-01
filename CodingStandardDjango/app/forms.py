@@ -8,22 +8,22 @@ class DocumentForm(forms.Form):
     )
 
     variables = forms.CharField(
-    	label = 'Nombres de variables',
+    	label = 'Nombres de variables/constantes',
     	widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'variables'})
     )
 
     indentation = forms.CharField(
-    	label = 'Indentación',
+    	label = 'Indentación (uso de espacios)',
     	widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'indentation'})
     )
 
     indentation_blocks = forms.CharField(
-        label = 'Bloques de Indentación',
+        label = 'Bloques de Indentación (indentación correcta)',
         widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'indentation_blocks'})
     )
 
     documentation = forms.CharField(
-    	label = 'Documentación',
+    	label = 'Documentación de funciones',
     	widget = forms.NumberInput(attrs = {'class': 'validate', 'id': 'documentation'})
     )
 
