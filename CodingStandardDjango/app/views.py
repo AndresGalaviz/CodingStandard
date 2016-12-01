@@ -11,6 +11,7 @@ from app.forms import DocumentForm
 from app.src import nsiqcppstyle
 import sys
 import os
+import re
 
 def index(request):
     return render(request, 'parallax.html')
@@ -56,11 +57,14 @@ def input(request):
         
         if form.is_valid():
             for f in request.FILES.getlist('docfile'):
-                #f name of the file
+                #f name of thefile
                 #f.read() contents of the file
-                
+                f = re.search(r'^.{6}(.{9}).{9}(.{19})_(.+\.cpp)', str(f)).group(1)
                 newdoc = Document(docfile = f)
+                
                 newdoc.save()
+                print("*************")
+                print(newdoc.docfile)
             # Redirect to the document list after POST
 
 

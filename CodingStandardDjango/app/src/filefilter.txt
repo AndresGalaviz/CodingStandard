@@ -6,4 +6,5 @@
 	~ UseSpaceIndentation
 	~ VariableNaming
 	~ InitialComments
+	~ IncludeLibraryDirectives
 }}}
